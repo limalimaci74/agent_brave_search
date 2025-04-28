@@ -23,7 +23,7 @@ class Deps:
 # Debug: prije inicijalizacije agenta
 st.write("🚀 Inicijalizacija agenta počinje...")
 agent = Agent(
-    model_name='openai:gpt-4o',
+    model='openai:gpt-4o',
     system_prompt='You are a helpful AI that can search the web for information using Brave Search API.',
     deps_type=Deps,
     retries=2,
