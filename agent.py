@@ -43,6 +43,10 @@ agent = Agent(
     system_prompt='You are a helpful AI that can search the web for information using Brave Search API.',
     deps_type=Deps,
     retries=2,
+),
+    system_prompt='You are a helpful AI that can search the web for information using Brave Search API.',
+    deps_type=Deps,
+    retries=2,
 )
 # Debug: agent je inicijaliziran
 st.write("✅ Agent je inicijaliziran")
