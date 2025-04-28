@@ -1,4 +1,8 @@
 from __future__ import annotations
+
+import pydantic_ai
+from pydantic_ai.agent import Agent, RunContext   # sada importamo i RunContext
+# ... ostali importi
 import os
 from dataclasses import dataclass
 from typing import Any
