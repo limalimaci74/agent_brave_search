@@ -10,6 +10,7 @@ from typing import Any
 import asyncio
 
 from httpx import AsyncClient
+from pydantic_ai.providers.openai import OpenAIProvider
 from pydantic_ai import ModelRetry
 
 # Debug log: potvrda da je modul učitan
@@ -33,9 +34,7 @@ _os.environ["OPENAI_API_KEY"] = openrouter_api_key
 st.write("🚀 Inicijalizacija agenta počinje...")
 agent = Agent(
     model='gpt-4o',
-    provider='openrouter',
-    base_url=openrouter_base,
-    api_key=openrouter_api_key,
+    provider=OpenAIProvider(base_url=openrouter_base, api_key=openrouter_api_key),
     system_prompt='You are a helpful AI that can search the web for information using Brave Search API.',
     deps_type=Deps,
     retries=2,
