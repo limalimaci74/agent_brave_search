@@ -29,11 +29,12 @@ brave_api_key = st.secrets.get("BRAVE_API_KEY")  # može biti None ako ne postoj
 st.write("🚀 Inicijalizacija agenta počinje...")
 agent = Agent(
     model='gpt-4o',
+    provider='openrouter',
+    base_url=openrouter_base,
+    api_key=openrouter_api_key,
     system_prompt='You are a helpful AI that can search the web for information using Brave Search API.',
     deps_type=Deps,
     retries=2,
-    base_url=openrouter_base,
-    api_key=openrouter_api_key,
 )
 # Debug: agent je inicijaliziran
 st.write("✅ Agent je inicijaliziran")
