@@ -11,7 +11,7 @@ from typing import Any
 from httpx import AsyncClient
 from pydantic_ai import ModelRetry
 
-# Debug log: potvrda da je moduo učitan
+# Debug log: potvrda da je modul učitan
 st.write("✅ agent.py modul je učitan")
 
 @dataclass
@@ -33,7 +33,7 @@ st.write("✅ Agent je inicijaliziran")
 @agent.tool
 async def brave_search(ctx: RunContext[Deps], query: str) -> str:
     # Debug: ulazak u alat brave_search
-'t.write(f"🔍 Pokreće se brave_search s query: {query}")
+    st.write(f"🔍 Pokreće se brave_search s query: {query}")
     if ctx.deps.brave_api_key is None:
         st.error("Error: Brave API key is missing. Please provide a valid API key.")
         return "Error: Brave API key is missing. Please provide a valid API key."
