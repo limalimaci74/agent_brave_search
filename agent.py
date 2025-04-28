@@ -25,6 +25,10 @@ openrouter_base = st.secrets["OPENROUTER_BASE_URL"]
 openrouter_api_key = st.secrets["OPENROUTER_API_KEY"]
 brave_api_key = st.secrets.get("BRAVE_API_KEY")  # može biti None ako ne postoji
 
+# Postavi OPENAI_API_KEY environment var kako bi OpenAIProvider (AsyncOpenAI) prihvatio ključ
+import os as _os
+_os.environ["OPENAI_API_KEY"] = openrouter_api_key
+
 # Debug: prije inicijalizacije agenta
 st.write("🚀 Inicijalizacija agenta počinje...")
 agent = Agent(
