@@ -20,6 +20,11 @@ class Deps:
     client: AsyncClient
     brave_api_key: str | None
 
+# Učitaj Streamlit secrets za OpenRouter i Brave Search API
+openrouter_base = st.secrets["OPENROUTER_BASE_URL"]
+openrouter_api_key = st.secrets["OPENROUTER_API_KEY"]
+brave_api_key = st.secrets.get("BRAVE_API_KEY")  # može biti None ako ne postoji
+
 # Debug: prije inicijalizacije agenta
 st.write("🚀 Inicijalizacija agenta počinje...")
 agent = Agent(
@@ -27,8 +32,11 @@ agent = Agent(
     system_prompt='You are a helpful AI that can search the web for information using Brave Search API.',
     deps_type=Deps,
     retries=2,
+    base_url=openrouter_base,
+    api_key=openrouter_api_key,
 )
 # Debug: agent je inicijaliziran
+st.write("✅ Agent je inicijaliziran")
 st.write("✅ Agent je inicijaliziran")
 
 @agent.tool
