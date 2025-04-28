@@ -7,6 +7,7 @@ from pydantic_ai.agent import Agent, RunContext   # sada importamo i RunContext
 import os
 from dataclasses import dataclass
 from typing import Any
+import asyncio
 
 from httpx import AsyncClient
 from pydantic_ai import ModelRetry
@@ -64,3 +65,23 @@ async def brave_search(ctx: RunContext[Deps], query: str) -> str:
         # Debug: vraćeni rezultati
         st.write(f"✅ brave_search vraća {len(results)} rezultata")
         return output
+
+# ### Chat UI za korisnika
+st.markdown("---")
+st.markdown("## Chat s Agentom")
+
+# Upiši pojam za pretraživanje
+user_query = st.text_input("Unesi pojam za pretraživanje putem Brave Search:")
+
+if st.button("Pretraži"):
+    if not user_query:
+        st.warning("Molim te unesi pojam prije pretraživanja.")
+    else:
+        st.write("🔄 Agent pretražuje...")
+        # Pokrećemo agenta u async petlji
+        try:
+            result = asyncio.run(agent.run(user_query))
+            st.write("### Rezultat pretraživanja:")
+            st.write(result)
+        except Exception as e:
+            st.error(f"Greška kod izvođenja agenta: {e}")
